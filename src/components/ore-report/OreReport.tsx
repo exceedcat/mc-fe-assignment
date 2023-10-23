@@ -1,4 +1,4 @@
-import { Table } from 'antd';
+import { Empty, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { FC } from 'react';
 import { LinePlot } from '../line-plot/LinePlot';
@@ -41,6 +41,8 @@ const columns: ColumnsType<OreReportData> = [
 ];
 
 export const OreReport: FC<Props> = ({ view = ReportView.Table, data }) => {
+  if (!data || !data.length) return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />;
+
   const plotData: Record<string, string | number>[] = data.map((item) => ({
     ...item,
     timestamp: new Date(item.timestamp).toLocaleString(),

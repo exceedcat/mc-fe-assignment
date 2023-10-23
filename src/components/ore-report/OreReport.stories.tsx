@@ -46,4 +46,5 @@ export const Plot: Story = {
   },
 };
 
-export const Empty: Story = {};
+export const EmptyTable: Story = {};
+export const EmptyPlot: Story = { args: { view: ReportView.Plot }};
