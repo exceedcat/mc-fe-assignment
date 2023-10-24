@@ -1,27 +1,18 @@
 import { Button, Form, Input } from 'antd';
-
-const onFinish = (values: any) => {
-  console.log('Success:', values);
-};
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-};
+import { FC } from 'react';
 
 type FieldType = {
   username?: string;
   password?: string;
 };
 
-export const LoginForm: React.FC = () => (
-  <Form
-    name="login"
-    requiredMark="optional"
-    onFinish={onFinish}
-    onFinishFailed={onFinishFailed}
-    autoComplete="on"
-    layout="vertical"
-  >
+interface Props {
+  onSubmit: (data: Record<FieldType, string>) => void;
+  isLoading: boolean;
+}
+
+export const LoginForm: FC<Props> = ({ onSubmit, isLoading }) => (
+  <Form name="login" requiredMark="optional" onFinish={onSubmit} autoComplete="on" layout="vertical">
     <Form.Item<FieldType>
       label="Username"
       name="username"
@@ -39,7 +30,7 @@ export const LoginForm: React.FC = () => (
     </Form.Item>
 
     <Form.Item>
-      <Button type="primary" htmlType="submit">
+      <Button type="primary" htmlType="submit" loading={isLoading}>
         Submit
       </Button>
     </Form.Item>
