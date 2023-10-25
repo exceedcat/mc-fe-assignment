@@ -28,7 +28,7 @@ export const ProfilePage: FC = () => {
 
     const data = {
       username: userData.user_id,
-      name: userData.name,
+      name: values.name,
       password: values.newPassword || userData.password,
     }
 
