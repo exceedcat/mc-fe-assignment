@@ -33,7 +33,12 @@ export const PageLayout: FC = () => {
         className="sider"
         style={{ background: colorBgContainer }}
       >
-        <Menu mode="inline" defaultSelectedKeys={key ? [key] : defaultSelectedKeys} items={menuItems} onSelect={() => setCollapsed(true)} />
+        <Menu
+          mode="inline"
+          defaultSelectedKeys={key ? [key] : defaultSelectedKeys}
+          items={menuItems}
+          onSelect={() => setCollapsed(true)}
+        />
       </Sider>
       <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }}>

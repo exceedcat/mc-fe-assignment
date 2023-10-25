@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { expect, it, describe } from 'vitest';
 
-import { OreReport } from './OreReport';
 import { OreAcquisition } from '../../hooks/useAqcuisitionsApi';
+
+import { OreReport } from './OreReport';
 import { ReportView } from './consts';
 
 const mockData: Array<OreAcquisition> = [

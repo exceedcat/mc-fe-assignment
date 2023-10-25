@@ -45,5 +45,4 @@ describe('LoginForm', () => {
     await screen.findByText('Please input your username!');
     await screen.findByText('Please input your password!');
   });
-
 });

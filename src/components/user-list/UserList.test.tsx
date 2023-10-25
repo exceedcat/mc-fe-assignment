@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { expect, it, describe } from 'vitest';
 
-import { UserList } from './UserList';
 import { UserDTO } from '../../hooks/useUserApi';
+
+import { UserList } from './UserList';
 
 const sampleUserData: Array<UserDTO> = [
   {
