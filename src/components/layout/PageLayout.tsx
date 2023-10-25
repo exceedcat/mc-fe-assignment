@@ -10,6 +10,7 @@ const { Header, Sider, Content } = Layout;
 
 export const PageLayout: FC = () => {
   const [collapsed, setCollapsed] = useState(true);
+  const [shouldBeCollapsed, setShouldBeCollapsed] = useState(true);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -18,6 +19,7 @@ export const PageLayout: FC = () => {
 
   const onBreakpoint = (value) => {
     setCollapsed(value);
+    setShouldBeCollapsed(value);
   };
 
   return (
@@ -37,7 +39,7 @@ export const PageLayout: FC = () => {
           mode="inline"
           defaultSelectedKeys={key ? [key] : defaultSelectedKeys}
           items={menuItems}
-          onSelect={() => setCollapsed(true)}
+          onSelect={() => setCollapsed(shouldBeCollapsed)}
         />
       </Sider>
       <Layout>
