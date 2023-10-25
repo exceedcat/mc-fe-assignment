@@ -11,7 +11,7 @@ interface Props {
 const columns: ColumnsType<UserDTO> = [
   {
     title: 'Username',
-    dataIndex: 'username',
+    dataIndex: 'user_id',
     sorter: (a, b) => a.username.localeCompare(b.username),
   },
   {
@@ -21,4 +21,4 @@ const columns: ColumnsType<UserDTO> = [
   },
 ];
 
-export const UserList: FC<Props> = ({ data }) => <Table rowKey="username" columns={columns} dataSource={data} />;
+export const UserList: FC<Props> = ({ data }) => <Table rowKey="user_id" columns={columns} dataSource={data} />;

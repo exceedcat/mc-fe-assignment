@@ -48,7 +48,7 @@ export const useUserAPI = (): UserApi => {
     }
     const resultData = await result.json();
 
-    return resultData.map((user) => ({ username: user.user_id, name: user.name }));
+    return resultData.map((user) => ({ user_id: user.user_id, name: user.name }));
   }, [token]);
 
   const updateById = async ({ user_id, ...data }: UserWithPasswordDTO) => {
