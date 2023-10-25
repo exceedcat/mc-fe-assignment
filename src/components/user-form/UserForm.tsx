@@ -54,7 +54,7 @@ export const UserForm: FC<Props> = ({ userData, onSubmit, isLoading }) => {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit" loading={isLoading}>
+        <Button type="primary" htmlType="submit" loading={isLoading} style={{ marginRight: 8 }}>
           Submit
         </Button>
         <Button htmlType="button" onClick={onReset}>

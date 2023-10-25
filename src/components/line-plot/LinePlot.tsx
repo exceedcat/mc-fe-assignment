@@ -1,4 +1,4 @@
-import { FC, lazy } from 'react';
+import { FC, lazy, Suspense } from 'react';
 
 const Line = lazy(() => import('@ant-design/plots').then((module) => ({ default: module.Line })));
 
@@ -19,5 +19,9 @@ export const LinePlot: FC<Props> = ({ data, xField, yField }) => {
     },
   };
 
-  return <Line {...config} />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Line {...config} />
+    </Suspense>
+  );
 };
