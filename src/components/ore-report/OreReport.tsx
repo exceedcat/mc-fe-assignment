@@ -2,12 +2,7 @@ import { Empty, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { FC } from 'react';
 import { LinePlot } from '../line-plot/LinePlot';
-
-interface OreReportData {
-  timestamp: number;
-  ore_sites: number;
-  date: Date;
-}
+import { OreAcquisition } from '../../hooks/useAqcuisitionsApi';
 
 export enum ReportView {
   Table,
@@ -15,7 +10,7 @@ export enum ReportView {
 }
 
 interface Props {
-  data: Array<OreReportData>;
+  data: Array<OreAcquisition>;
   view: ReportView;
 }
 
@@ -24,7 +19,7 @@ const getFromDate = (type: 'day' | 'time', date: Date) => {
   return type === 'day' ? day : time;
 };
 
-const columns: ColumnsType<OreReportData> = [
+const columns: ColumnsType<OreAcquisition> = [
   {
     title: 'Date',
     dataIndex: 'date',

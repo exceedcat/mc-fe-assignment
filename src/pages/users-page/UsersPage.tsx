@@ -1,30 +1,18 @@
 import { Typography } from 'antd';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 import { UserList } from '../../components/user-list/UserList';
-
-import { useUserData } from '../profile-page/useUserData';
+import { useUserAPI } from '../../hooks/useUserApi';
+import { Status, useGetData } from '../../hooks/useGetData';
 
 const { Title } = Typography;
 
 export const UsersPage: FC = () => {
-  const { error, getAll } = useUserData({ initialGetData: false });
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { getAll } = useUserAPI();
+  const { data, status } = useGetData({ query: getAll })
 
-  useEffect(() => {
-    setIsLoading(true);
-    const getUsers = async () => {
-      const data = await getAll();
-      setData(data);
-      setIsLoading(false);
-    };
-
-    getUsers();
-  }, [getAll]);
-
-  if (error) return 'Error';
-  if (isLoading) return 'Loading...';
+  if (status === Status.Error) return 'Error';
+  if (status  === Status.Loading) return 'Loading...';
 
   return (
     <>
