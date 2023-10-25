@@ -1,23 +1,22 @@
-import { Typography } from 'antd';
+import { Spin, Typography } from 'antd';
 import { FC } from 'react';
 
 import { UserList } from '../../components/user-list/UserList';
-import { useUserAPI } from '../../hooks/useUserApi';
+
 import { Status, useGetData } from '../../hooks/useGetData';
+import { useUserAPI } from '../../hooks/useUserApi';
 
 const { Title } = Typography;
 
 export const UsersPage: FC = () => {
   const { getAll } = useUserAPI();
-  const { data, status } = useGetData({ query: getAll })
+  const { data, status } = useGetData({ query: getAll });
 
   if (status === Status.Error) return 'Error';
-  if (status  === Status.Loading) return 'Loading...';
-
   return (
-    <>
+    <Spin spinning={status === Status.Loading} delay={500}>
       <Title>Users</Title>
       <UserList data={data} />
-    </>
+    </Spin>
   );
 };

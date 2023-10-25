@@ -1,5 +1,5 @@
 import type { TabsProps } from 'antd';
-import { DatePicker, DatePickerProps, Tabs, Typography } from 'antd';
+import { DatePicker, DatePickerProps, Spin, Tabs, Typography } from 'antd';
 import { FC, useEffect, useState } from 'react';
 
 import { OreReport, ReportView } from '../../components/ore-report/OreReport';
@@ -20,7 +20,6 @@ export const ReportPage: FC = () => {
   }, [data]);
 
   if (status === Status.Error) return 'Error';
-  if (status === Status.Loading) return 'Loading...';
 
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
     if (!date) {
@@ -49,10 +48,10 @@ export const ReportPage: FC = () => {
   ];
 
   return (
-    <>
+    <Spin spinning={status === Status.Loading} delay={500}>
       <Title>Report</Title>
       <DatePicker onChange={onChange} picker="month" />
       <Tabs activeKey={activeTab} items={items} onChange={setActiveTab} />
-    </>
+    </Spin>
   );
 };

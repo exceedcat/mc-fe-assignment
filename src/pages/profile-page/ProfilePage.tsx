@@ -1,4 +1,4 @@
-import { Alert, message, Typography } from 'antd';
+import { Alert, message, Spin, Typography } from 'antd';
 import { FC, useEffect } from 'react';
 
 import { UserForm } from '../../components/user-form/UserForm';
@@ -32,7 +32,6 @@ export const ProfilePage: FC = () => {
   }, [messageApi, updateUserDataStatus]);
 
   if (userDataStatus === Status.Error) return 'Error';
-  if (userDataStatus === Status.Loading) return 'Loading...';
 
   const handleSubmit = async (values) => {
     const data: UserWithPasswordDTO = {
@@ -45,13 +44,13 @@ export const ProfilePage: FC = () => {
   };
 
   return (
-    <>
+    <Spin spinning={userDataStatus === Status.Loading} delay={500}>
       {contextHolder}
       <Title>Profile</Title>
       {updateUserDataStatus === Status.Error && (
         <Alert message="Something went wrong, please check you entered correct data." type="error" />
       )}
       <UserForm userData={userData} onSubmit={handleSubmit} isLoading={updateUserDataStatus === Status.Loading} />
-    </>
+    </Spin>
   );
 };

@@ -1,5 +1,5 @@
 import { Button, Form, Input } from 'antd';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);
@@ -30,6 +30,11 @@ export const UserForm: FC<Props> = ({ userData, onSubmit, isLoading }) => {
   const onReset = () => {
     form.resetFields();
   };
+
+  useEffect(() => {
+    if (!userData) return;
+    form.setFieldsValue(userData)
+  }, [form, userData])
 
   return (
     <Form
