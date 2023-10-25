@@ -1,7 +1,7 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Layout, Menu, Button, theme } from 'antd';
 import { FC, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import { defaultSelectedKeys, menuItems } from './menu-items';
 
@@ -12,11 +12,13 @@ export const PageLayout: FC = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const { pathname } = useLocation();
+  const key = pathname.split('/')[1];
 
   return (
     <Layout style={{ height: '100vh' }}>
       <Sider trigger={null} collapsible collapsed={collapsed} style={{ background: colorBgContainer }}>
-        <Menu mode="inline" defaultSelectedKeys={defaultSelectedKeys} items={menuItems} />
+        <Menu mode="inline" defaultSelectedKeys={key ? [key] : defaultSelectedKeys} items={menuItems} />
       </Sider>
       <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }}>

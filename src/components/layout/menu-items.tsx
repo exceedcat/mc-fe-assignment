@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 export const menuItems = [
   {
-    key: 'Home',
+    key: 'home',
     icon: <UploadOutlined />,
     label: <Link to="/">Home</Link>,
   },
   {
-    key: 'Report',
+    key: 'report',
     icon: <UploadOutlined />,
     label: <Link to="/report">Report</Link>,
   },
@@ -16,12 +16,12 @@ export const menuItems = [
     type: 'divider',
   },
   {
-    key: 'Profile',
+    key: 'profile',
     icon: <UserOutlined />,
     label: <Link to="/profile">Profile</Link>,
   },
   {
-    key: 'Users',
+    key: 'users',
     icon: <VideoCameraOutlined />,
     label: <Link to="/users">Users</Link>,
   },
