@@ -15,8 +15,8 @@ interface Props {
 const columns: ColumnsType<UserData> = [
   {
     title: 'Id',
-    dataIndex: 'user_id',
-    sorter: (a, b) => a.user_id - b.user_id,
+    dataIndex: 'username',
+    sorter: (a, b) => a.username - b.username,
   },
   {
     title: 'Name',
@@ -29,5 +29,5 @@ const columns: ColumnsType<UserData> = [
 const onChange = console.log;
 
 export const UserList: FC<Props> = ({ data }) => (
-  <Table rowKey="user_id" columns={columns} dataSource={data} onChange={onChange} />
+  <Table rowKey="username" columns={columns} dataSource={data} onChange={onChange} />
 );

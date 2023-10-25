@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useAuth } from '../../hooks/useAuth';
 
@@ -11,6 +11,7 @@ interface Returned {
   isLoading: boolean;
   error: boolean;
   updateUser: (data: UserData) => Promise<boolean>;
+  getAll: () => Promise<Omit<UserData, 'password'>[]>;
 }
 
 type UserData = {
@@ -80,5 +81,27 @@ export const useUserData = ({ initialGetData = true }: Props): Returned => {
     }
   };
 
-  return { data, isLoading, error, updateUser };
+  const getAll = useCallback(async () => {
+    if (!token) return;
+    try {
+      const result = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!result.ok) {
+        setError(true);
+        return [];
+      }
+      const resultData = await result.json();
+
+      return resultData.map((user) => ({ username: user.user_id, name: user.name }));
+    } catch (e) {
+      console.log(e);
+      setError(true);
+      return [];
+    }
+  }, [token]);
+
+  return { data, isLoading, error, updateUser, getAll };
 };

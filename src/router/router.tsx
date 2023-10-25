@@ -8,6 +8,7 @@ import { WelcomePage } from '../pages/welcome-page/WelcomePage';
 import { PageLayout } from '../components/layout/PageLayout';
 
 import { getAuth } from '../hooks/useAuth';
+import { UsersPage } from '../pages/users-page/UsersPage';
 
 async function loginLoader() {
   const authData = await getAuth();
@@ -52,6 +53,11 @@ export const router = createBrowserRouter([
         path: 'profile',
         loader: protectedLoader,
         Component: ProfilePage,
+      },
+      {
+        path: 'users',
+        loader: protectedLoader,
+        Component: UsersPage,
       },
     ],
   },
