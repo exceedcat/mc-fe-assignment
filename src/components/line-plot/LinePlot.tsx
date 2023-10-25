@@ -1,5 +1,6 @@
-import { Line } from '@ant-design/plots';
-import { FC } from 'react';
+import { FC, lazy } from 'react';
+
+const Line = lazy(() => import('@ant-design/plots').then((module) => ({ default: module.Line })));
 
 interface Props {
   data: Record<string, string | number>[];
