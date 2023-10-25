@@ -6,6 +6,7 @@ import { LinePlot } from '../line-plot/LinePlot';
 interface OreReportData {
   timestamp: number;
   ore_sites: number;
+  date: Date;
 }
 
 export enum ReportView {
@@ -18,21 +19,21 @@ interface Props {
   view: ReportView;
 }
 
-const getFromTimestamp = (type: 'date' | 'time', timestamp: string) => {
-  const [date, time] = new Date(timestamp).toLocaleString().split(', ');
-  return type === 'date' ? date : time;
+const getFromDate = (type: 'day' | 'time', date: Date) => {
+  const [day, time] = date.toLocaleString().split(', ');
+  return type === 'day' ? day : time;
 };
 
 const columns: ColumnsType<OreReportData> = [
   {
     title: 'Date',
-    dataIndex: 'timestamp',
-    render: (value) => getFromTimestamp('date', value),
+    dataIndex: 'date',
+    render: (value) => getFromDate('day', value),
   },
   {
     title: 'Time',
-    dataIndex: 'timestamp',
-    render: (value) => getFromTimestamp('time', value),
+    dataIndex: 'date',
+    render: (value) => getFromDate('time', value),
   },
   {
     title: 'Ore Sites',
@@ -45,8 +46,8 @@ export const OreReport: FC<Props> = ({ view = ReportView.Table, data }) => {
 
   const plotData: Record<string, string | number>[] = data.map((item) => ({
     ...item,
-    timestamp: new Date(item.timestamp).toLocaleString(),
+    date: item.date.toLocaleString(),
   }));
   if (view === ReportView.Table) return <Table rowKey="timestamp" columns={columns} dataSource={data} />;
-  if (view === ReportView.Plot) return <LinePlot data={plotData} xField="timestamp" yField="ore_sites" />;
+  if (view === ReportView.Plot) return <LinePlot data={plotData} xField="date" yField="ore_sites" />;
 };

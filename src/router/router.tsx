@@ -9,6 +9,7 @@ import { PageLayout } from '../components/layout/PageLayout';
 
 import { getAuth } from '../hooks/useAuth';
 import { UsersPage } from '../pages/users-page/UsersPage';
+import { ReportPage } from '../pages/report-page/ReportPage';
 
 async function loginLoader() {
   const authData = await getAuth();
@@ -58,6 +59,11 @@ export const router = createBrowserRouter([
         path: 'users',
         loader: protectedLoader,
         Component: UsersPage,
+      },
+      {
+        path: 'report',
+        loader: protectedLoader,
+        Component: ReportPage,
       },
     ],
   },

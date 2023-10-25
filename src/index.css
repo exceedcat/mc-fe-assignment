@@ -4,6 +4,10 @@ body {
     overflow: hidden;
 }
 
+main {
+    overflow: auto;
+}
+
 #root {
     height: 100%;
 }
