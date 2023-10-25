@@ -2,16 +2,17 @@ import type { TabsProps } from 'antd';
 import { DatePicker, DatePickerProps, Spin, Tabs, Typography } from 'antd';
 import { FC, useEffect, useState } from 'react';
 
-import { OreReport, ReportView } from '../../components/ore-report/OreReport';
+import { OreReport } from '../../components/ore-report/OreReport';
+import { ReportView } from '../../components/ore-report/consts';
 
-import { useAqcuisitionsApi } from '../../hooks/useAqcuisitionsApi';
+import { OreAcquisition, useAqcuisitionsApi } from '../../hooks/useAqcuisitionsApi';
 import { Status, useGetData } from '../../hooks/useGetData';
 
 const { Title } = Typography;
 
 export const ReportPage: FC = () => {
   const { getAll } = useAqcuisitionsApi();
-  const { data, status } = useGetData({ query: getAll });
+  const { data = [], status } = useGetData<never, OreAcquisition[]>({ query: getAll });
   const [filteredData, setFilteredData] = useState([]);
   const [activeTab, setActiveTab] = useState(ReportView.Table);
 

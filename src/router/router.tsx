@@ -3,13 +3,13 @@ import { createBrowserRouter, Link, redirect } from 'react-router-dom';
 
 import { LoginPage } from '../pages/login-page/LoginPage';
 import { ProfilePage } from '../pages/profile-page/ProfilePage';
+import { ReportPage } from '../pages/report-page/ReportPage';
+import { UsersPage } from '../pages/users-page/UsersPage';
 import { WelcomePage } from '../pages/welcome-page/WelcomePage';
 
 import { PageLayout } from '../components/layout/PageLayout';
 
 import { getAuth } from '../hooks/useAuth';
-import { UsersPage } from '../pages/users-page/UsersPage';
-import { ReportPage } from '../pages/report-page/ReportPage';
 
 async function loginLoader() {
   const authData = await getAuth();

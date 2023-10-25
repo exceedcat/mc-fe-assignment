@@ -1,9 +1,7 @@
 import { Button, Form, Input } from 'antd';
 import { FC, useEffect } from 'react';
 
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-};
+import { UserDTO } from '../../hooks/useUserApi';
 
 type FieldType = {
   name?: string;
@@ -16,10 +14,7 @@ type FormData = {
 };
 
 interface Props {
-  userData: {
-    name: string;
-    password?: string;
-  };
+  userData: UserDTO | null;
   onSubmit: (formData: FormData) => void;
   isLoading: boolean;
 }
@@ -33,8 +28,8 @@ export const UserForm: FC<Props> = ({ userData, onSubmit, isLoading }) => {
 
   useEffect(() => {
     if (!userData) return;
-    form.setFieldsValue(userData)
-  }, [form, userData])
+    form.setFieldsValue(userData);
+  }, [form, userData]);
 
   return (
     <Form
@@ -43,7 +38,6 @@ export const UserForm: FC<Props> = ({ userData, onSubmit, isLoading }) => {
       initialValues={userData}
       requiredMark="optional"
       onFinish={onSubmit}
-      onFinishFailed={onFinishFailed}
       autoComplete="on"
       layout="vertical"
     >

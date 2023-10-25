@@ -12,9 +12,9 @@ const { Title } = Typography;
 export const ProfilePage: FC = () => {
   const { username } = useAuth();
   const { getById, updateById } = useUserAPI();
-  const { data: userData, status: userDataStatus } = useGetData({
+  const { data: userData, status: userDataStatus } = useGetData<string, UserWithPasswordDTO>({
     query: getById,
-    data: username as never,
+    data: username,
     enabled: !!username,
   });
   const { status: updateUserDataStatus, run: updateUserData } = useGetData({
@@ -34,13 +34,15 @@ export const ProfilePage: FC = () => {
   if (userDataStatus === Status.Error) return 'Error';
 
   const handleSubmit = async (values) => {
+    if (!userData) return;
+
     const data: UserWithPasswordDTO = {
       user_id: userData.user_id,
       name: values.name,
       password: values.newPassword || userData.password,
     };
 
-    await updateUserData?.(data as never);
+    await updateUserData?.(data);
   };
 
   return (

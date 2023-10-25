@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import localforage from 'localforage';
+import { useEffect, useState } from 'react';
 
 interface LogInData {
   username: string;

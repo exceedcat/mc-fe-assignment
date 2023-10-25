@@ -4,13 +4,13 @@ import { FC } from 'react';
 import { UserList } from '../../components/user-list/UserList';
 
 import { Status, useGetData } from '../../hooks/useGetData';
-import { useUserAPI } from '../../hooks/useUserApi';
+import { UserDTO, useUserAPI } from '../../hooks/useUserApi';
 
 const { Title } = Typography;
 
 export const UsersPage: FC = () => {
   const { getAll } = useUserAPI();
-  const { data, status } = useGetData({ query: getAll });
+  const { data = [], status } = useGetData<never, UserDTO[]>({ query: getAll });
 
   if (status === Status.Error) return 'Error';
   return (

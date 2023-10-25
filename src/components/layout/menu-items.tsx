@@ -26,4 +26,4 @@ export const menuItems = [
     label: <Link to="/users">Users</Link>,
   },
 ];
-export const defaultSelectedKeys = ['Home']
+export const defaultSelectedKeys = ['Home'];

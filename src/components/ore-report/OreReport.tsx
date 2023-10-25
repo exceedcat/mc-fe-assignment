@@ -1,13 +1,11 @@
 import { Empty, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { FC } from 'react';
-import { LinePlot } from '../line-plot/LinePlot';
+
 import { OreAcquisition } from '../../hooks/useAqcuisitionsApi';
 
-export enum ReportView {
-  Table,
-  Plot,
-}
+import { LinePlot } from '../line-plot/LinePlot';
+import { ReportView } from './consts';
 
 interface Props {
   data: Array<OreAcquisition>;

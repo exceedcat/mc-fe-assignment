@@ -2,17 +2,13 @@ import { Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { FC } from 'react';
 
-type UserData = {
-  user_id: string;
-  name: string;
-  password?: string;
-};
+import { UserDTO } from '../../hooks/useUserApi';
 
 interface Props {
-  data: Array<UserData>;
+  data: Array<UserDTO>;
 }
 
-const columns: ColumnsType<UserData> = [
+const columns: ColumnsType<UserDTO> = [
   {
     title: 'Username',
     dataIndex: 'username',
@@ -25,6 +21,4 @@ const columns: ColumnsType<UserData> = [
   },
 ];
 
-export const UserList: FC<Props> = ({ data }) => (
-  <Table rowKey="username" columns={columns} dataSource={data} />
-);
+export const UserList: FC<Props> = ({ data }) => <Table rowKey="username" columns={columns} dataSource={data} />;

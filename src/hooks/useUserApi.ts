@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { useAuth } from './useAuth';
 
-type UserDTO = {
+export type UserDTO = {
   user_id: string;
   name: string;
 };

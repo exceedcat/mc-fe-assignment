@@ -33,11 +33,13 @@ export const useAqcuisitionsApi = (): AcquisitionsApi => {
     }
     const resultData: AcquisitionDTO[] = await result.json();
 
-    return resultData.sort((a, b) => a.timestamp - b.timestamp).map((data) => ({
-      timestamp: data.timestamp,
-      ore_sites: data.ore_sites,
-      date: new Date(data.timestamp * 1000),
-    }));
+    return resultData
+      .sort((a, b) => a.timestamp - b.timestamp)
+      .map((data) => ({
+        timestamp: data.timestamp,
+        ore_sites: data.ore_sites,
+        date: new Date(data.timestamp * 1000),
+      }));
   }, [token]);
 
   return {
