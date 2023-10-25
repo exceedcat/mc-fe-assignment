@@ -14,20 +14,17 @@ interface Props {
 
 const columns: ColumnsType<UserData> = [
   {
-    title: 'Id',
+    title: 'Username',
     dataIndex: 'username',
-    sorter: (a, b) => a.username - b.username,
+    sorter: (a, b) => a.username.localeCompare(b.username),
   },
   {
     title: 'Name',
     dataIndex: 'name',
-    sorter: (a, b) => a.name - b.name,
+    sorter: (a, b) => a.name.localeCompare(b.name),
   },
 ];
 
-// todo: implement sorting
-const onChange = console.log;
-
 export const UserList: FC<Props> = ({ data }) => (
-  <Table rowKey="username" columns={columns} dataSource={data} onChange={onChange} />
+  <Table rowKey="username" columns={columns} dataSource={data} />
 );
