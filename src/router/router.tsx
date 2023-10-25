@@ -2,6 +2,7 @@ import { Button, Result } from 'antd';
 import { createBrowserRouter, Link, redirect } from 'react-router-dom';
 
 import { LoginPage } from '../pages/login-page/LoginPage';
+import { ProfilePage } from '../pages/profile-page/ProfilePage';
 import { WelcomePage } from '../pages/welcome-page/WelcomePage';
 
 import { PageLayout } from '../components/layout/PageLayout';
@@ -50,7 +51,7 @@ export const router = createBrowserRouter([
       {
         path: 'profile',
         loader: protectedLoader,
-        Component: () => <div>profileee</div>,
+        Component: ProfilePage,
       },
     ],
   },

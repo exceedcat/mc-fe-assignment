@@ -6,24 +6,26 @@ const onFinishFailed = (errorInfo: any) => {
 };
 
 type FieldType = {
-  username?: string;
+  name?: string;
   password?: string;
+};
+
+type FormData = {
+  name: string;
+  newPassword?: string;
 };
 
 interface Props {
   userData: {
-    user_id: string;
     name: string;
     password?: string;
   };
+  onSubmit: (formData: FormData) => void;
+  isLoading: boolean;
 }
 
-export const UserForm: FC<Props> = ({ userData }) => {
+export const UserForm: FC<Props> = ({ userData, onSubmit, isLoading }) => {
   const [form] = Form.useForm();
-
-  const onFinish = (values: any) => {
-    console.log('Success:', values, userData);
-  };
 
   const onReset = () => {
     form.resetFields();
@@ -35,29 +37,25 @@ export const UserForm: FC<Props> = ({ userData }) => {
       form={form}
       initialValues={userData}
       requiredMark="optional"
-      onFinish={onFinish}
+      onFinish={onSubmit}
       onFinishFailed={onFinishFailed}
       autoComplete="on"
       layout="vertical"
     >
-      <Form.Item<FieldType> label="Id" name="user_id" rules={[{ required: true, message: 'Please input your id!' }]}>
-        <Input />
-      </Form.Item>
-
       <Form.Item<FieldType> label="Name" name="name" rules={[{ required: true, message: 'Please input your name!' }]}>
         <Input />
       </Form.Item>
 
       <Form.Item<FieldType>
         label="New password"
-        name="new_password"
+        name="newPassword"
         help="Leave the field empty if you do not want to change your password"
       >
         <Input.Password />
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" loading={isLoading}>
           Submit
         </Button>
         <Button htmlType="button" onClick={onReset}>
